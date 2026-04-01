@@ -1,0 +1,47 @@
+nav {
+  height: 64px;
+  line-height: 64px;
+  background-color: rgb(139, 139, 238);
+}
+.navbar-size {
+width: 95%;
+margin: 0 auto;
+}
+nav .brand-logo {
+position: relative;
+display: flex;
+align-items: center;
+height: 100%;
+}
+nav .brand-logo img {
+  height: 80px;
+}
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main-body {
+background-color: #aadbf4;
+color: rgb(0, 0, 0);
+
+}
+.materialboxed-image {
+margin: 0 auto;
+height: 500px;
+width: 1000px;
+}
+.click-me-button {
+background-color: #3c3b3b;
+margin-top: 50px;
+}
+.card-reveal {
+color: black;
+}
+.card-reveal .card-title,
+.card-reveal p {
+color: black;
+}
+.open-form-button {
+    margin-top: 20px;
+}
