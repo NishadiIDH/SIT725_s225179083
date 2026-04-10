@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Books Catalog</title>
+  <style>
+    h1 {
+    color: #b220eb;
+    }
+
+    button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    margin: 10px 0;
+    }
+
+    button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+    }
+
+    #booksDisplay p {
+    background: rgb(234, 240, 212);
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  </style>
+</head>
+<body>
+
+  <h1>Books Catalogue developed by s225179083</h1>
+  <p>Click the button below to get all books from the server:</p>
+
+  <button id="fetchBooksBtn">Get Books</button>
+  <div id="booksDisplay"></div>
+
+  <script>
+  const btn = document.getElementById('fetchBooksBtn');
+  const out = document.getElementById('booksDisplay');
+
+  function render(items) {
+  out.innerHTML = '';
+
+    if (!Array.isArray(items) || items.length === 0) {
+      out.textContent = 'No books found';
+      return;
+    }
+
+    for (const book of items) {
+      const p = document.createElement('p');
+
+      // handle Mongo Decimal128 OR normal number/string
+      const price =
+        typeof book.price === 'string'
+          ? book.price
+          : book.price?.$numberDecimal || book.price || '';
+
+      p.textContent = `${book.title} by ${book.author} - ${book.genre} - AUD ${price}`;
+
+      p.style.cursor = 'pointer';
+      p.style.color = 'blue';
+
+      p.addEventListener('click', async () => {
+      await loadBookDetails(book.id);
+      });
+
+      out.appendChild(p);
+    }
+  }
+
+    async function loadBookDetails(id) {
+      try {
+        out.textContent = 'Loading book details...';
+
+        const res = await fetch(`/api/books/${id}`);
+
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+
+        const body = await res.json();
+
+        const book = body.data;
+
+        const price =
+          book.price?.$numberDecimal || book.price;
+
+        out.innerHTML = `
+          <h3>${book.title}</h3>
+          <p><b>Author:</b> ${book.author}</p>
+          <p><b>Year:</b> ${book.year}</p>
+          <p><b>Genre:</b> ${book.genre}</p>
+          <p><b>Summary:</b> ${book.summary}</p>
+          <p><b>Price:</b> AUD ${price}</p>
+          <button onclick="location.reload()">Back</button>
+        `;
+      } catch (err) {
+        console.error(err);
+        out.textContent = 'Error loading book details.';
+      }
+    }
+
+  btn.addEventListener('click', async () => {
+    out.textContent = 'Loading...';
+
+    try {
+      const res = await fetch('/api/books');
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+
+      const body = await res.json();
+
+      // expecting: { statusCode, data, message }
+      render(body.data);
+    } catch (err) {
+      console.error('Error fetching books:', err);
+      out.textContent = 'Error fetching books.';
+    }
+  });
+</script>
+
+</body>
+</html>
