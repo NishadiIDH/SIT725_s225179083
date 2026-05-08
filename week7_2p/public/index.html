@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Chat App</title>
+    <style>
+        body{
+            background-color: beige;
+        }
+        
+        input {
+            height: 2cm;
+            width: 50%;
+            padding: 5px;
+        }
+
+        button {
+            margin-top: 1.5cm;
+            padding: 6px 10px;
+            background-color: rgb(188, 188, 255);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Live Chat</h1>
+
+    <div id="messages"></div>
+
+    <input type="text" id="messageInput" placeholder="Type message"><br>
+    <button id="sendBtn">Send</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="scripts.js"></script>
+
+</body>
+</html>
