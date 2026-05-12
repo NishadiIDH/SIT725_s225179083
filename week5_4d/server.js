@@ -20,9 +20,9 @@ const booksRoutes = require('./routes/books');
 app.use('/api/books', booksRoutes);
 
 // GET /api/integrity-check42
-app.get('/api/integrity-check42', (req, res) => {
-  res.status(204).send();
-});
+// app.get('/api/integrity-check42', (req, res) => {
+//   res.status(204).send();
+// });
 
 // Root route
 app.get('/', (req, res) => {

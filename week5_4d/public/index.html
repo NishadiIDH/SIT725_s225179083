@@ -220,7 +220,7 @@
     function showMsg(containerId, text, type) {
       const el = document.getElementById(containerId);
       el.innerHTML = `<div class="msg ${type}">${text}</div>`;
-      setTimeout(() => el.innerHTML = '', 5000);
+      setTimeout(() => el.innerHTML = '', 8000);
     }
 
     // render the book list
@@ -375,7 +375,7 @@
           setTimeout(() => {
           document.getElementById('editSection').classList.add('hidden');
           currentEditId = null;
-        } , 2000);
+        } , 8000);
         } else {
           showMsg('editMsg', `Error: ${body.message}`, 'error');
         }

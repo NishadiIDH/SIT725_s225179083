@@ -157,6 +157,7 @@ async function run() {
   const updatePath = (id) => `${API_BASE}/${id}`;
 
   // ---- T01 Valid CREATE ----
+  // create a valid book with all correct fields
   await test({
     id: "T01",
     name: "Valid create",
@@ -168,6 +169,7 @@ async function run() {
   });
 
   // ---- T02 Duplicate ID ----
+  // Tries to create a book with existing ID
   await test({
     id: "T02",
     name: "Duplicate ID",
@@ -179,6 +181,7 @@ async function run() {
   });
 
   // ---- T03 Immutable ID ----
+  // Tries to update ID of an existing book
   await test({
     id: "T03",
     name: "Immutable ID on update",
@@ -190,6 +193,7 @@ async function run() {
   });
 
   // ---- T04 Unknown field CREATE ----
+  // Tries to create a book with extra unknown field
   await test({
     id: "T04",
     name: "Unknown field CREATE",
@@ -201,6 +205,7 @@ async function run() {
   });
 
   // ---- T05 Unknown field UPDATE ----
+  // Tries to update a book with extra unknown field
   await test({
     id: "T05",
     name: "Unknown field UPDATE",
@@ -216,6 +221,7 @@ async function run() {
   // =====================================
 
   // ---- T06 Missing title on CREATE ----
+  // Tries to create a book with missing title
   await test({
     id: "T06",
     name: "Missing title on CREATE",
@@ -227,6 +233,7 @@ async function run() {
   });
 
   // ---- T07 Missing author on CREATE ----
+  // Tries to create a book with missing author
   await test({
     id: "T07",
     name: "Missing author on CREATE",
@@ -238,6 +245,7 @@ async function run() {
   });
 
   // ---- T08 Missing year on CREATE ----
+  // Tries to create a book with missing year
   await test({
     id: "T08",
     name: "Missing year on CREATE",
@@ -249,6 +257,7 @@ async function run() {
   });
 
   // ---- T09 Missing genre on CREATE ----
+  // Tries to create a book with missing genre
   await test({
     id: "T09",
     name: "Missing genre on CREATE",
@@ -260,6 +269,7 @@ async function run() {
   });
 
   // ---- T10 Missing summary on CREATE ----
+  // Tries to create a book with missing summary
   await test({
     id: "T10",
     name: "Missing summary on CREATE",
@@ -271,6 +281,7 @@ async function run() {
   });
 
   // ---- T11 Missing price on CREATE ----
+  // Tries to create a book with missing price
   await test({
     id: "T11",
     name: "Missing price on CREATE",
@@ -282,6 +293,7 @@ async function run() {
   });
 
   // ---- T12 year is a string instead of number ----
+  // Tries to create a book where year is non-numeric
   await test({
     id: "T12",
     name: "year wrong type (string) on CREATE",
@@ -293,6 +305,7 @@ async function run() {
   });
 
   // ---- T13 price is negative on CREATE ----
+  // Tries to create a book where book price is negative value
   await test({
     id: "T13",
     name: "Negative price on CREATE",
@@ -304,6 +317,7 @@ async function run() {
   });
 
   // ---- T14 price is zero on CREATE ----
+  // Tries to create a book where book price is zero
   await test({
     id: "T14",
     name: "Zero price on CREATE",
@@ -315,6 +329,7 @@ async function run() {
   });
 
   // ---- T15 year below min boundary (999) ----
+  // Tries to create a book where year < 1000
   await test({
     id: "T15",
     name: "year below min boundary on CREATE",
@@ -326,6 +341,7 @@ async function run() {
   });
 
   // ---- T16 year above max boundary (future year) ----
+  // Tries to create a book where year > 2026
   await test({
     id: "T16",
     name: "year in future on CREATE",
@@ -337,6 +353,7 @@ async function run() {
   });
 
   // ---- T17 title too short (1 char) ----
+  // Tries to create a book where title (char) < 2
   await test({
     id: "T17",
     name: "title too short on CREATE",
@@ -348,6 +365,7 @@ async function run() {
   });
 
   // ---- T18 title too long (101 chars) ----
+  // Tries to create a book where title (char) > 100
   await test({
     id: "T18",
     name: "title too long on CREATE",
@@ -359,6 +377,7 @@ async function run() {
   });
 
   // ---- T19 author too short (1 char) ----
+  // Tries to create a book where author (char) < 2
   await test({
     id: "T19",
     name: "author too short on CREATE",
@@ -370,6 +389,7 @@ async function run() {
   });
 
   // ---- T20 summary too short (under 20 chars) ----
+  // Tries to create a book where summary (char) < 20
   await test({
     id: "T20",
     name: "summary too short on CREATE",
@@ -381,6 +401,7 @@ async function run() {
   });
 
   // ---- T21 summary too long (over 1000 chars) ----
+  // Tries to create a book where sumary (char) < 1000
   await test({
     id: "T21",
     name: "summary too long on CREATE",
@@ -392,6 +413,7 @@ async function run() {
   });
 
   // ---- T22 invalid genre on CREATE ----
+  // Tries to create a book with not allowed genre
   await test({
     id: "T22",
     name: "Invalid genre on CREATE",
@@ -403,6 +425,7 @@ async function run() {
   });
 
   // ---- T23 id wrong format on CREATE ----
+  // Tries to create a book with wrong ID format
   await test({
     id: "T23",
     name: "id wrong format on CREATE",
@@ -414,6 +437,7 @@ async function run() {
   });
 
   // ---- T24 Valid UPDATE ----
+  // Update a book with correct fields
   await test({
     id: "T24",
     name: "Valid update",
@@ -425,6 +449,7 @@ async function run() {
   });
 
   // ---- T25 UPDATE on non-existent book ----
+  // Tries to update a non-existing book
   await test({
     id: "T25",
     name: "Update non-existent book",
