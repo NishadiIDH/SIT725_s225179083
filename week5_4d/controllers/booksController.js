@@ -12,6 +12,7 @@ function parseValidationError(err) {
     .join(', ');
 }
 
+// check for unknown fields in the body
 function findUnknownFields(body, allowedFields) {
   return Object.keys(body).filter(key => !allowedFields.includes(key));
 }
